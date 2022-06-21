@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/img/logo_petshop.png'
+import logo from '../../assets/img/logo_petshop.png'
 
 function NavBar(){
     return(
