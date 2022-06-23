@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../../assets/img/logo_petshop.png'
+import GrCart from '../CartWidget/index'
 
 function NavBar(){
     return(
@@ -23,6 +24,7 @@ function NavBar(){
                     <a className="nav-link" href="#">Contacto</a>
                 </li>
                 </ul>
+                <div><GrCart/></div>
             </div>
         </nav>
     )
