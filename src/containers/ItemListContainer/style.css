@@ -1,0 +1,11 @@
+.title{
+    position: absolute;
+    z-index: 2;
+    margin-left: auto;
+    margin-right: auto;
+    color: #343a40;
+}
+
+.banner{
+    position: relative;
+}
