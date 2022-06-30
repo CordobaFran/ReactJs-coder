@@ -21,10 +21,14 @@ const ItemListContainer = ({greeting}) => {
 
   return (
     <div className='d-flex justify-content-center flex-column'>
-        <img className="img-fluid banner"src={PetBanner} alt="banner" />
         <h1 className="h3 text-center mt-4 title">{greeting}</h1>
+        <img className="img-fluid banner"src={PetBanner} alt="banner" />
         <div>
-          {products ? <ItemList products={products}/> : null}
+          {products ? 
+            <ItemList products={products}/>
+          :
+          <div className='loader mx-auto mt-4'></div>// 
+          }
         </div>
     </div>
   )

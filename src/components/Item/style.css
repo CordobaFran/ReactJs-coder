@@ -1,0 +1,20 @@
+.itemCard{
+    width: 24rem;
+    box-shadow: 0.5em 0.5rem 13px 0px #1d212461;
+    border: solid 1px #343a40;
+}
+
+.itemCard__img{
+    /* margin: 10px; */
+    padding: 10px;
+    height: 300px;
+    object-fit: contain;
+}
+.itemCard__title{
+    height: 120px;
+}
+
+.itemCard__text{
+    overflow-y: hidden;
+    height: 196px;
+}
