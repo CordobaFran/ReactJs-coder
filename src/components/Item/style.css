@@ -1,7 +1,11 @@
 .itemCard{
     width: 24rem;
-    box-shadow: 0.5em 0.5rem 13px 0px #1d212461;
-    border: solid 1px #343a40;
+    box-shadow: 0 0.2rem 13px 4px #1d212461;
+    cursor: pointer;
+}
+
+.itemCard:hover{
+    box-shadow: 0 0.2rem 13px 7px #1d212461;
 }
 
 .itemCard__img{
@@ -11,7 +15,8 @@
     object-fit: contain;
 }
 .itemCard__title{
-    height: 120px;
+    height: 30px;
+    text-align: center;
 }
 
 .itemCard__text{

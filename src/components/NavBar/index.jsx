@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import logo from '../../assets/img/logo_petshop.png'
 import GrCart from '../CartWidget/index'
 
@@ -12,10 +13,10 @@ function NavBar(){
             <div className="collapse navbar-collapse ml-5 pl-5" id="navbarNavDropdown">
                 <ul className="navbar-nav">
                 <li className="nav-item active">
-                    <a className="nav-link" href="#">Inicio<span className="sr-only">(current)</span></a>
+                    <Link to={"/"} className="nav-link" href="#">Inicio<span className="sr-only">(current)</span></Link>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#">Productos</a>
+                    <Link to={"/products"} className="nav-link" href="#">Productos</Link>
                 </li>
                 <li className="nav-item">
                     <a className="nav-link" href="#">Galería</a>

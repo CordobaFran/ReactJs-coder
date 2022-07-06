@@ -1,7 +1,6 @@
 import React from 'react'
 
 const ItemDetail = ({product}) => {
-    console.log(product)
   return (
     <div>
         <h1 className='text-center my-5 h2'>{product.title}</h1>
