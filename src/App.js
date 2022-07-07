@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path='/' element={<ItemListContainer greeting={"Bienvenidos a Petshop Store"} />} />
           <Route path='/detail/:productId' element={<ItemDetailContainer />} />
-          <Route path='/products' element={<ItemListContainer />} />
+          <Route path='/products/:categoryId' element={<ItemListContainer />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </div>

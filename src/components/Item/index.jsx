@@ -15,7 +15,7 @@ const Item = ({product}) => {
         <img src={product.image} className='card-img-top itemCard__img' alt="cardimg"/>
         <div className='card-body d-flex flex-column'>
             <h5 className='card-title itemCard__title'>USD {product.price}</h5>
-            <a href="#" className='btn btn-primary justify-item-center w-50 mx-auto'>Go somewhere</a>
+            <button className='btn btn-primary justify-item-center w-50 mx-auto'>Go somewhere</button>
         </div>
     </div>
       )
