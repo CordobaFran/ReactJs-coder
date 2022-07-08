@@ -10,52 +10,50 @@ const ItemListContainer = ({ greeting }) => {
   const [productsFiltered, setProductsFiltered] = useState(null);
 
   const params = useParams();
-  // console.log(products)
 
-  const productsF = () => {
-    const productF = products.filter(filters)
-    function filters(product) {
-      return product.category === params.categoryId
-    }
-    return productF
-  }
-
+  //fetch products first time
   useEffect(() => {
     const getProducts = async () => {
       try {
         const resp = await fetch("https://fakestoreapi.com/products");
         const data = await resp.json();
-
         setProducts(data)
-
-        if (products) setProductsFiltered(productsF)
-        // console.log(productsFiltered)
-
-        if (params.categoryId === "all" || !params.categoryId) {
-          setProductsFiltered(data)
-        }
       } catch (error) {
 
       }
     }
     getProducts();
-  }, [params])
+  }, [])
+
+  //filter and render products per category
+  useEffect(() => {
+    const productsFiltered = () => {
+      const productF = products.filter(filters)
+      function filters(product) {
+        return product.category === params.categoryId
+      }
+      return productF
+    }
+
+    if (products) setProductsFiltered(productsFiltered)
+    if (params.categoryId === "all" || !params.categoryId) {
+      setProductsFiltered(products)
+    }
+  }, [params, products])
+
 
   return (
     <div className='justify-content-center flex-column'>
-      
       {!params.categoryId ?
         <h1 className="h3 text-center mx-auto mt-4 title">{greeting}</h1>
         :
         null
       }
-
       {!params.categoryId ?
         <img className="img-fluid banner" src={PetBanner} alt="banner" />
         :
         null
       }
-
       <div>
         {products ?
           productsFiltered ?
