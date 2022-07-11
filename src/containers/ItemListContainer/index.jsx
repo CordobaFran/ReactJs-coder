@@ -45,12 +45,12 @@ const ItemListContainer = ({ greeting }) => {
   return (
     <div className='justify-content-center flex-column'>
       {!params.categoryId ?
-        <h1 className="h3 text-center mx-auto mt-4 title">{greeting}</h1>
+        <h1 className="h3 text-center mx-auto mt-2 mt-md-4 title">{greeting}</h1>
         :
         null
       }
       {!params.categoryId ?
-        <img className="img-fluid banner" src={PetBanner} alt="banner" />
+        <img className="img-fluid banner mt-5 mt-md-0 px-0 px-md-5" src={PetBanner} alt="banner" />
         :
         null
       }
