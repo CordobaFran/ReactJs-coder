@@ -10,8 +10,8 @@ function NavBar() {
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse ml-5 pl-5" id="navbarNavDropdown">
-                <ul className="navbar-nav">
+            <div className="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul className="navbar-nav text-center">
                     <li className="nav-item active">
                         <Link to={"/"} className="nav-link">Inicio<span className="sr-only">(current)</span></Link>
                     </li>
@@ -37,7 +37,7 @@ function NavBar() {
                         </div>
                     </li>
                 </ul>
-                <div><GrCart /></div>
+                <div className='text-center my-2'><GrCart /></div>
             </div>
         </nav>
     )

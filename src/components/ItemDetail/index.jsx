@@ -6,12 +6,12 @@ const ItemDetail = ({ product }) => {
   return (
 
     <div>
-      <div className="container mt-5 shadow">
+      <div className="container mt-5 shadow col-11 col-md-10">
         <div className="row">
-          <div className="col-9 my-auto">
+          <div className="col-12 col-md-9 my-auto">
             <img className='d-flex mx-auto w-50' src={product.image} alt="prodcuctImage" />
           </div>
-          <div className="col-3 border rounded">
+          <div className="col-12 col-md-3 border rounded">
             <h1 className='font-weight-bold text-left my-5 h4'>{product.title}</h1>
             <h2 className='text-center my-5 h3'>USD {product.price}</h2>
             <div className='my-5'>
