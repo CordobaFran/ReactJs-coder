@@ -1,8 +1,24 @@
 import React from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import ItemCounter from '../ItemCounter/index'
 import "./style.css"
 
 const ItemDetail = ({ product }) => {
+
+  const navigate = useNavigate();
+
+  const [qtyAdded, setQtyAdded] = useState(0)
+
+  const handleConfirm = (qty)=>{
+    setQtyAdded(qty)
+  }
+  console.log(qtyAdded)
+
+  const handleFinish = ()=>{
+    navigate('/cart')
+  }
+
   return (
 
     <div>
@@ -19,7 +35,17 @@ const ItemDetail = ({ product }) => {
               <p className='text-center font-weight-bold h3'>{product.rating.rate}</p>
               <p className='text-center'>promedio entre <span className='font-weight-bold'>{product.rating.count}</span> opiones</p>
             </div>
-            <ItemCounter initialStock={8}/>
+            {!qtyAdded ?
+              <ItemCounter onConfirm={handleConfirm} initialStock={8}/>
+              :
+              <>
+                <div className='text-center'>
+                  <button onClick={handleFinish} className="btn btn-secondary my-3">Terminar Compra</button>
+                </div>
+              </>
+              
+            }
+            
           </div>
         </div>
         <div className="row mt-3">

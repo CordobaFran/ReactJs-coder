@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const ItemCounter = ({ initialStock }) => {
+const ItemCounter = ({ onConfirm, initialStock }) => {
 
     const [counter, setCounter] = useState(0);
 
@@ -16,7 +16,9 @@ const ItemCounter = ({ initialStock }) => {
     }
 
     const handleAdd = () => {
-        
+        if(counter <= initialStock) {
+            onConfirm(counter)
+        }
     }
 
     return (

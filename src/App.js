@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar';
 import NotFound from './components/NotFound';
+import Cart from './containers/Cart';
 import ItemDetailContainer from './containers/ItemDetailContainer';
 import ItemListContainer from './containers/ItemListContainer';
 
@@ -14,6 +15,7 @@ function App() {
           <Route path='/' element={<ItemListContainer greeting={"Bienvenidos a Petshop Store"} />} />
           <Route path='/detail/:productId' element={<ItemDetailContainer />} />
           <Route path='/products/:categoryId' element={<ItemListContainer />} />
+          <Route path='/cart' element={<Cart />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </div>
