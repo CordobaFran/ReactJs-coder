@@ -13,7 +13,6 @@ const ItemDetail = ({ product }) => {
   const handleConfirm = (qty)=>{
     setQtyAdded(qty)
   }
-  console.log(qtyAdded)
 
   const handleFinish = ()=>{
     navigate('/cart')
