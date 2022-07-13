@@ -1,15 +1,11 @@
-import React from 'react'
-import { useContext } from 'react';
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/logo_petshop.png'
-import { Shop } from '../../Context/ShopProvider';
+import { Shop } from '../../Context/ShopContext';
 import GrCart from '../CartWidget/index'
 
 
-
-
-
-function NavBar() {
+const NavBar = () => {
 
     const value = useContext(Shop)
 
@@ -23,7 +19,7 @@ function NavBar() {
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul className="navbar-nav text-center">
                     <li className="nav-item active">
-                        <Link to={"/"} className="nav-link">{value}<span className="sr-only">(current)</span></Link>
+                        <Link to={"/"} className="nav-link">Inicio<span className="sr-only">(current)</span></Link>
                     </li>
                     {/* <li className="nav-item">
                         <Link to={"/products"} className="nav-link">Productos</Link>
