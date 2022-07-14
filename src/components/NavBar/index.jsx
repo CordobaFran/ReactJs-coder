@@ -1,15 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/logo_petshop.png'
-import { Shop } from '../../Context/ShopContext';
 import GrCart from '../CartWidget/index'
 
 
 const NavBar = () => {
 
-    const value = useContext(Shop)
-
-    console.log(value)
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark vw-100">
             <Link to={"/"} className="navbar-brand p-0"><img src={logo} alt="logo" style={{ width: 80 }} /></Link>

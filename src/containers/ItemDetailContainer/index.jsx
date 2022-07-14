@@ -7,7 +7,6 @@ const ItemDetailContainer = () => {
     const [productDetail, setProductDetail] = useState(null)
 
     const params = useParams();
-    console.log(productDetail)
 
     useEffect(() => {
         const getProducts = async () => {

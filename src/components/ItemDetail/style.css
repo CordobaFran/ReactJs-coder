@@ -4,3 +4,7 @@
     padding: 20px;
     box-shadow: 5px 5px 10px #0000003a;
 }
+
+.cart__qty{
+    color: #ffffff;
+}
