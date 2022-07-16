@@ -1,0 +1,13 @@
+
+td{
+    border: solid 1px;
+}
+.td__img{
+    width: 115px;
+    height: 115px;
+    text-align: center;
+}
+
+.img{
+    max-height: 115px;
+}

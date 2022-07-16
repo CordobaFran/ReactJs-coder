@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const ItemCounter = ({ onConfirm, initialStock }) => {
 
-    const [counter, setCounter] = useState(0);
+    const [counter, setCounter] = useState(1);
 
     const onAdd = () => {
         if (counter < initialStock) {
