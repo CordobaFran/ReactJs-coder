@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React from 'react'
 import { useContext } from 'react'
 import { Shop } from '../../Context/ShopContext'
+import { useNavigate } from 'react-router-dom'
 import "./style.css"
 
 const Cart = () => {
 
   const { removeItem, removeAll } = useContext(Shop)
   const { cart } = useContext(Shop)
+  
+  const navigate = useNavigate();
 
   const itemTotal = (price, qty) => {
     return qty * price;
@@ -15,42 +17,59 @@ const Cart = () => {
 
   const totalCost = () => {
     let sum = 0
-    console.log(cart)
     cart.forEach(element => {
-      console.log(sum += (element.price * element.quantity))
+      sum += (element.price * element.quantity)
     });
-
     return sum
   }
 
+  const buyProducts = () => {
+    navigate('/')
+  }
+
   return (
-    <table className='mx-auto mt-5 bg-dark'>
-      {cart.length ?
-        <>
-          {cart.map(product => {
-            return <>
-              <tr key={product.id}>
-                <td className='td__img px-3'><img className='img-fluid img' src={product.image} alt={product.title}></img></td>
-                <td className='px-3'>{product.title}</td>
-                <td className='px-3'>Cant: {product.quantity}</td>
-                <td className='px-3'>US$ {itemTotal(product.price, product.quantity)} </td>
-                <td className='px-3'> <button className='mx-3 btn btn-primary justify-item-center mx-auto' onClick={() => { removeItem(product.id) }}>Quitar Producto</button></td>
+    <>
+      <div className='table__container w-75 mx-auto pt-4 mt-5'>
+        <table className='mx-auto'>
+          {cart.length ?
+            <>
+              {cart.map(product => {
+                return <>
+                  <tr key={product.id} className='tr--bottom'>
+                    <td className='td__img px-3 py-3'><img className='img-fluid img' src={product.image} alt={product.title}></img></td>
+                    <td className='px-3 text-center'>{product.title}</td>
+                    <td className='px-3 text-center'>Cant: {product.quantity}</td>
+                    <td className='px-3 text-center'>US$ {Math.round(itemTotal(product.price, product.quantity)*100)/100} </td>
+                    <td className='px-3 text-center'> <button className='mx-3 btn btn-info justify-item-center mx-auto' onClick={() => { removeItem(product.id) }}>Quitar Producto</button></td>
+                  </tr>
+                </>
+              })
+              }
+              <tr>
+                <td className='td__img'></td>
+                <td></td>
+                <td className='px-3 text-center font-weight-bold'>TOTAL</td>
+                <td className='px-3 text-center font-weight-bold'>US$ {Math.round(totalCost()*100)/100 }</td>
+                <td className='px-3 text-center'><button className='mx-3 btn btn-success justify-item-center mx-auto' onClick={() => { }}>Finalizar Compra</button></td>
               </tr>
             </>
-          })
+            :
+            <div className='text-center'>
+              <p className='font-weight-bold h4 mt-3'>No tiene productos en el carrito.</p>
+              <button className='my-5 btn btn-info justify-item-center mx-auto' onClick={() => { buyProducts() }}>Comprar Productos</button>
+            </div>
           }
-          <tr>
-            <td className='td__img'></td>
-            <td></td>
-            <td className='text-center font-weight-bold'>TOTAL</td>
-            <td className='text-center font-weight-bold'>US$ {totalCost()}</td>
-          </tr>
-          {/* <button className='mt-5 btn btn-primary justify-item-center mx-auto' onClick={() => { removeAll() }}>Eliminar Todos</button> */}
+        </table>
+      </div>
+      {cart.length ?
+        <>
+          <div className='text-center'>
+            <button className='my-5 btn btn-danger justify-item-center mx-auto' onClick={() => { removeAll() }}>Eliminar Todos</button>
+          </div>
         </>
         :
-        null
-      }
-    </table>
+        null}
+    </>
   )
 }
 

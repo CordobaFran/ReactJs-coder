@@ -8,20 +8,29 @@ import "./style.css"
 
 
 const ItemDetail = ({ product }) => {
-  
-  const {addItem} = useContext(Shop);
-  
+
+  const { addItem } = useContext(Shop);
+
   const navigate = useNavigate();
 
   const [qtyAdded, setQtyAdded] = useState(0)
 
-  const handleConfirm = (qty)=>{
+  const handleConfirm = (qty) => {
     setQtyAdded(qty)
   }
 
-  const handleFinish = ()=>{
+  const handleFinish = () => {
     addItem(product, qtyAdded)
     navigate('/cart')
+  }
+
+  const handleModify = ()=>{
+    setQtyAdded(0)
+  }
+
+  const handleContinue = () => {
+    addItem(product, qtyAdded)
+    navigate(-1)
   }
 
   return (
@@ -41,16 +50,23 @@ const ItemDetail = ({ product }) => {
               <p className='text-center'>promedio entre <span className='font-weight-bold'>{product.rating.count}</span> opiones</p>
             </div>
             {!qtyAdded ?
-              <ItemCounter onConfirm={handleConfirm} initialStock={8}/>
+              <ItemCounter onConfirm={handleConfirm} initialStock={8} />
               :
               <>
-                <div className='text-center'>
-                  <button onClick={handleFinish} className="btn btn-secondary my-3">Terminar Compra</button>
+                <div>
+                  <div className='text-center'>
+                    <button onClick={handleFinish} className="btn btn-danger my-2 w-100">Terminar mi Compra</button>
+                  </div>
+                  <div className='text-center'>
+                    <button onClick={handleModify} className="btn btn-info my-2 w-100">Modificar Compra</button>
+                  </div>
+                  <div className='text-center'>
+                    <button onClick={handleContinue} className="btn btn-success my-2 w-100">Seguir Comprando</button>
+                  </div>
                 </div>
               </>
-              
             }
-            
+
           </div>
         </div>
         <div className="row mt-3">

@@ -1,6 +1,12 @@
 
-td{
-    border: solid 1px;
+.table__container{
+    border-radius: 15px;
+    border:solid 2px #ddd;
+    box-shadow: 5px 5px 5px #0000007a;
+}
+
+.tr--bottom{
+    border-bottom: solid 2px #aaa;
 }
 .td__img{
     width: 115px;

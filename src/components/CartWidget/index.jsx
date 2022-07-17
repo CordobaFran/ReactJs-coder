@@ -8,17 +8,31 @@ import "./style.css"
 const CartWidget = () => {
   const navigate = useNavigate();
 
-  const {cart} = useContext(Shop)
+  const { cart } = useContext(Shop)
 
-  const toCart = () =>{
+  const toCart = () => {
     navigate("/cart")
   }
-  
+
+  const totalProducts = () =>{
+    let total = 0;
+    cart.forEach(el => {
+      total += el.quantity
+    });
+    return total
+  }
+
   return (
-      <div onClick={toCart}>
-          <GrCart size="32" className="cart ml-5"/>
-          {cart.length && <span className='cart__qty'>({cart.length})</span>}
-      </div> 
+    <>
+      {cart.length ?
+        <div className='cart__container mx-auto' onClick={toCart}>
+          <GrCart size="32" className="cart ml-5" />
+          {cart.length && <span className='cart__qty mx-auto'>({totalProducts()})</span>}
+        </div>
+        :
+        null
+      }
+    </>
   )
 }
 
