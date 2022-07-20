@@ -8,7 +8,7 @@ const Cart = () => {
 
   const { removeItem, removeAll } = useContext(Shop)
   const { cart } = useContext(Shop)
-  
+
   const navigate = useNavigate();
 
   const itemTotal = (price, qty) => {
@@ -27,6 +27,22 @@ const Cart = () => {
     navigate('/')
   }
 
+  const checkout = () => {
+    const total = totalCost()
+    const asd = {
+      buyer: {
+        name: "Franco Cordoba",
+        phone: 113245678,
+        email: "hola@hola.com"
+      },
+      items: [{ cart }],
+      total
+    }
+    console.log(asd)
+  }
+
+
+
   return (
     <>
       <div className='table__container w-75 mx-auto pt-4 mt-5'>
@@ -39,7 +55,7 @@ const Cart = () => {
                     <td className='td__img px-3 py-3'><img className='img-fluid img' src={product.image} alt={product.title}></img></td>
                     <td className='px-3 text-center'>{product.title}</td>
                     <td className='px-3 text-center'>Cant: {product.quantity}</td>
-                    <td className='px-3 text-center'>US$ {Math.round(itemTotal(product.price, product.quantity)*100)/100} </td>
+                    <td className='px-3 text-center'>US$ {Math.round(itemTotal(product.price, product.quantity) * 100) / 100} </td>
                     <td className='px-3 text-center'> <button className='mx-3 btn btn-info justify-item-center mx-auto' onClick={() => { removeItem(product.id) }}>Quitar Producto</button></td>
                   </tr>
                 </>
@@ -49,8 +65,8 @@ const Cart = () => {
                 <td className='td__img'></td>
                 <td></td>
                 <td className='px-3 text-center font-weight-bold'>TOTAL</td>
-                <td className='px-3 text-center font-weight-bold'>US$ {Math.round(totalCost()*100)/100 }</td>
-                <td className='px-3 text-center'><button className='mx-3 btn btn-success justify-item-center mx-auto' onClick={() => { }}>Finalizar Compra</button></td>
+                <td className='px-3 text-center font-weight-bold'>US$ {Math.round(totalCost() * 100) / 100}</td>
+                <td className='px-3 text-center'><button className='mx-3 btn btn-success justify-item-center mx-auto' onClick={() => { checkout() }}>Finalizar Compra</button></td>
               </tr>
             </>
             :

@@ -24,7 +24,7 @@ const ItemDetail = ({ product }) => {
     navigate('/cart')
   }
 
-  const handleModify = ()=>{
+  const handleModify = () => {
     setQtyAdded(0)
   }
 
@@ -43,7 +43,7 @@ const ItemDetail = ({ product }) => {
           </div>
           <div className="col-12 col-md-3 border rounded">
             <h1 className='font-weight-bold text-left my-5 h4'>{product.title}</h1>
-            <h2 className='text-center my-5 h3'>USD {product.price}</h2>
+            <h2 className='text-center my-5 h3'>$ {product.price}</h2>
             <div className='my-5'>
               <p className='text-center h4'>Opiniones</p>
               <p className='text-center font-weight-bold h3'>{product.rating.rate}</p>

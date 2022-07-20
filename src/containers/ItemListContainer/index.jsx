@@ -3,7 +3,10 @@ import { useParams } from 'react-router-dom'
 import PetBanner from '../../assets/img/BannerPetshop.jpg'
 import ItemList from '../../components/ItemList'
 import LoadingEffect from '../../components/LoadingEffect'
+import { collection, query, getDocs } from "firebase/firestore";
+import { db } from '../../components/Firebase/config'
 import "./style.css"
+
 
 const ItemListContainer = ({ greeting }) => {
   const [products, setProducts] = useState(null);
@@ -13,11 +16,20 @@ const ItemListContainer = ({ greeting }) => {
 
   //fetch products first time
   useEffect(() => {
+
     const getProducts = async () => {
       try {
-        const resp = await fetch("https://fakestoreapi.com/products");
-        const data = await resp.json();
-        setProducts(data)
+        const q = query(collection(db, "items"));
+        const querySnapshot = await getDocs(q);
+        const productos = []
+
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+          productos.push({ id: doc.id, ...doc.data() })
+        });
+
+        setProducts(productos)
       } catch (error) {
 
       }

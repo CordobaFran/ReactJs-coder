@@ -32,10 +32,9 @@ const NavBar = () => {
                         </div>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <Link to={"/products/all"} className="dropdown-item">Todo</Link>
-                            <Link to={"/products/electronics"} className="dropdown-item">Electrónica</Link>
-                            <Link to={"/products/jewelery"} className="dropdown-item">Joyería</Link>
-                            <Link to={"/products/men's clothing"} className="dropdown-item">Ropa de Hombre</Link>
-                            <Link to={"/products/women's clothing"} className="dropdown-item">Ropa de Mujer</Link>
+                            <Link to={"/products/cat"} className="dropdown-item">Gatos</Link>
+                            <Link to={"/products/dog"} className="dropdown-item">Perros</Link>
+                            <Link to={"/products/otros"} className="dropdown-item">Otros</Link>
                         </div>
                     </li>
                 </ul>
