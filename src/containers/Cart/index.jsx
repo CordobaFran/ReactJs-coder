@@ -2,12 +2,15 @@ import React from 'react'
 import { useContext } from 'react'
 import { Shop } from '../../Context/ShopContext'
 import { useNavigate } from 'react-router-dom'
+import { addDoc, collection} from "firebase/firestore";
+import { db } from '../../components/Firebase/config'
+import swal from 'sweetalert';
 import "./style.css"
 
 const Cart = () => {
 
   const { removeItem, removeAll } = useContext(Shop)
-  const { cart } = useContext(Shop)
+  const { cart, setCart } = useContext(Shop)
 
   const navigate = useNavigate();
 
@@ -29,16 +32,27 @@ const Cart = () => {
 
   const checkout = () => {
     const total = totalCost()
-    const asd = {
+    const order = {
       buyer: {
         name: "Franco Cordoba",
         phone: 113245678,
         email: "hola@hola.com"
       },
       items: [{ cart }],
-      total
+      total: total
     }
-    console.log(asd)
+    console.log(order)
+    addOrdertoFb(order);
+  }
+
+  const addOrdertoFb = async (order) => {
+    // Add a new document with a generated id
+    const newOrderRef = collection(db, "orders");
+    // later...
+    await addDoc(newOrderRef, order).then(({id})=>{
+      swal("Orden Generada", `se ha creado la orden con el id: ${id} `, "success");
+      setCart([])
+    });
   }
 
 

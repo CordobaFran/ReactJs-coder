@@ -34,7 +34,7 @@ const ShopProvider = ({ children }) => {
 
 
   return (
-    <Shop.Provider value={{ addItem, cart, removeItem, removeAll }}>
+    <Shop.Provider value={{ addItem, cart, setCart, removeItem, removeAll }}>
       {children}
     </Shop.Provider>
   )
