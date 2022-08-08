@@ -35,6 +35,7 @@ const Cart = () => {
 
   const checkout = () => {
     const total = totalCost()
+    const date = new Date().toLocaleString()
     const order = {
       buyer: {
         name: userData[0].name,
@@ -42,11 +43,10 @@ const Cart = () => {
         email: userData[0].email
       },
       items: [{ cart }],
-      total: total
+      total: total,
+      time: date
     }
-    console.log(order)
     addOrdertoFb(order);
-    console.log(userData[0].name)
   }
 
   const addOrdertoFb = async (order) => {
@@ -54,7 +54,7 @@ const Cart = () => {
     const newOrderRef = collection(db, "orders");
     // later...
     await addDoc(newOrderRef, order).then(({ id }) => {
-      swal("Orden Generada", `se ha creado la orden con el id: ${id} `, "success");
+      swal("Orden Generada", `Se ha creado la orden:\n\nID: ${id}\n\nHora: ${order.time} `, "success");
       setCart([])
     });
   }
@@ -90,13 +90,14 @@ const Cart = () => {
                     }
                   </td>
                 </tr>
-                <UserForm />
               </>
               :
-              <div className='text-center'>
-                <p className='font-weight-bold h4 mt-3'>No tiene productos en el carrito.</p>
-                <button className='my-5 btn btn-info justify-item-center mx-auto' onClick={() => { buyProducts() }}>Comprar Productos</button>
-              </div>
+              <tr className='text-center'>
+                <td>
+                  <p className='font-weight-bold h4 mt-3'>No tiene productos en el carrito.</p>
+                  <button className='my-5 btn btn-info justify-item-center mx-auto' onClick={() => { buyProducts() }}>Comprar Productos</button>
+                </td>
+              </tr>
             }
           </tbody>
         </table>

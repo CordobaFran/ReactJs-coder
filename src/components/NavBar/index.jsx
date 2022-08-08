@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/logo_petshop.png'
 import GrCart from '../CartWidget/index'
+import UserWidget from '../UserWidget';
 
 
 const NavBar = () => {
@@ -39,6 +40,7 @@ const NavBar = () => {
                     </li>
                 </ul>
                 <div className='text-center my-2'><GrCart /></div>
+                <div><UserWidget/></div>
             </div>
         </nav>
     )
