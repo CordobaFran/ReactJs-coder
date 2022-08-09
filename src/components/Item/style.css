@@ -11,10 +11,10 @@
 .itemCard__img{
     /* margin: 10px; */
     padding: 10px;
-    height: 300px;
+    height: 320px;
     object-fit: contain;
 }
-.itemCard__title{
+.itemCard__price{
     height: 30px;
     text-align: center;
 }
