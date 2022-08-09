@@ -4,7 +4,6 @@ import { Shop } from '../../Context/ShopContext'
 import { useNavigate } from 'react-router-dom'
 import { addDoc, collection } from "firebase/firestore";
 import { db } from '../../components/Firebase/config'
-import UserForm from '../UserForm';
 import { User } from "../../Context/UserContext"
 import swal from 'sweetalert';
 import "./style.css"
@@ -71,7 +70,7 @@ const Cart = () => {
                     <td className='td__img px-3 py-3'><img className='img-fluid img' src={product.image} alt={product.title}></img></td>
                     <td className='px-3 text-center'>{product.title}</td>
                     <td className='px-3 text-center'>Cant: {product.quantity}</td>
-                    <td className='px-3 text-center'>US$ {Math.round(itemTotal(product.price, product.quantity) * 100) / 100} </td>
+                    <td className='px-3 text-center'>$ {Math.round(itemTotal(product.price, product.quantity) * 100) / 100} </td>
                     <td className='px-3 text-center'> <button className='mx-3 btn btn-info justify-item-center mx-auto' onClick={() => { removeItem(product.id) }}>Quitar Producto</button></td>
                   </tr>
                 })}
@@ -79,7 +78,7 @@ const Cart = () => {
                   <td className='td__img'></td>
                   <td></td>
                   <td className='px-3 text-center font-weight-bold'>TOTAL</td>
-                  <td className='px-3 text-center font-weight-bold'>US$ {Math.round(totalCost() * 100) / 100}</td>
+                  <td className='px-3 text-center font-weight-bold'>$ {Math.round(totalCost() * 100) / 100}</td>
                   <td className='px-3 text-center'>
                     {userData.length === 0 ?
                       <button className='mx-3 btn btn-success justify-item-center mx-auto' data-toggle="modal" data-target="#staticBackdrop">Finalizar Compra</button>

@@ -18,15 +18,6 @@ const NavBar = () => {
                     <li className="nav-item active">
                         <Link to={"/"} className="nav-link">Inicio<span className="sr-only">(current)</span></Link>
                     </li>
-                    {/* <li className="nav-item">
-                        <Link to={"/products"} className="nav-link">Productos</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to={"/"} className="nav-link">Galería</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to={"/"} className="nav-link">Contacto</Link>
-                    </li> */}
                     <li className="nav-item dropdown">
                         <div className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
                             Productos

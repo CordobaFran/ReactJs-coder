@@ -20,7 +20,6 @@ const ItemDetailContainer = () => {
                 if (docSnap.exists()) {
                     setProductDetail(productDetail)
                 } else {
-                    // doc.data() will be undefined in this case
                     console.log("No such document!");
                 }
             } catch (error) {

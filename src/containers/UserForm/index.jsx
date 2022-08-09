@@ -54,7 +54,6 @@ const UserForm = () => {
           </div>
           <div className="modal-body text-center">
             <form onSubmit={handleSubmit(onSubmit)}>
-              {/* register your input into the hook by invoking the "register" function */}
               <label className='w-100'>
                 <span>Nombre:</span><br />
                 <input className='w-100' {...register("name", { required: "Ingrese su nombre", pattern: /^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/ })} />
