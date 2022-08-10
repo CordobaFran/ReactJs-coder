@@ -50,7 +50,7 @@ const ItemDetail = ({ product }) => {
               <p className='text-center'>promedio entre <span className='font-weight-bold'>{product.rating.count}</span> opiones</p>
             </div>
             {!qtyAdded ?
-              <ItemCounter onConfirm={handleConfirm} initialStock={8} />
+              <ItemCounter onConfirm={handleConfirm} initialStock={product.stock} />
               :
               <>
                 <div>
