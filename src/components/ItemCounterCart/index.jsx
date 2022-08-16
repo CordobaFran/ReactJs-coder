@@ -7,7 +7,6 @@ const ItemCounterCart = ({stock, cant, product }) => {
     const {updateQuantity} = useContext(Shop)
 
     const onAdd = () => {
-        console.log("+", product.quantity)
         if (product.quantity < stock) {
             let quantity = product.quantity + 1
             updateQuantity(product, quantity)
@@ -17,7 +16,6 @@ const ItemCounterCart = ({stock, cant, product }) => {
         }
     }
     const onDecrement = () => {
-        console.log("-", product.quantity)
         if (product.quantity > 1) {
             let quantity = product.quantity - 1
             updateQuantity(product, quantity)
