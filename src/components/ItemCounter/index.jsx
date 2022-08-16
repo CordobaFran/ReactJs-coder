@@ -11,7 +11,7 @@ const ItemCounter = ({ onConfirm, initialStock }) => {
         }
     }
     const onDecrement = () => {
-        if (counter > 0) {
+        if (counter > 1) {
             setCounter(counter - 1)
         }
     }
@@ -27,6 +27,7 @@ const ItemCounter = ({ onConfirm, initialStock }) => {
             <p className='h5 font-weight-normal my-3'>Cantidad: {counter}</p>
             <button onClick={onDecrement} className="btn__mod btn btn-info mx-2">-</button>
             <button onClick={onAdd} className="btn__mod btn btn-info mx-2">+</button>
+            <p className='font-weight-normal my-2'>{initialStock} disponibles</p>
             <br></br>
             <button onClick={handleAdd} className="btn btn-info my-3 w-100">Agregar al carrito</button>
         </div>
