@@ -2,16 +2,17 @@ import React from 'react'
 import { useContext } from 'react'
 import { Shop } from '../../Context/ShopContext'
 import { useNavigate } from 'react-router-dom'
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, documentId, getDocs, query, where } from "firebase/firestore";
 import { db } from '../../components/Firebase/config'
 import { User } from "../../Context/UserContext"
 import swal from 'sweetalert';
 import "./style.css"
+import ItemCounterCart from '../../components/ItemCounterCart';
 
 const Cart = () => {
 
   const { removeItem, removeAll } = useContext(Shop)
-  const { cart, setCart } = useContext(Shop)
+  const { cart, updateStock, updateQuantity, setCart } = useContext(Shop)
   const { userData } = useContext(User)
 
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const Cart = () => {
       total: total,
       time: date
     }
-    addOrdertoFb(order);
+    swalMsjNotInStock(order)
   }
 
   const addOrdertoFb = async (order) => {
@@ -54,9 +55,56 @@ const Cart = () => {
     // later...
     await addDoc(newOrderRef, order).then(({ id }) => {
       swal("Orden Generada", `Se ha creado la orden:\n\nID: ${id}\n\nHora: ${order.time} `, "success");
-      setCart([])
+      // setCart([])
     });
   }
+
+  // --- STOCK CONTROL BEFORE CREATE THE ORDER ---
+  
+  const swalMsjNotInStock = (order) => {
+    checkStock().then(el => {
+      if (el.length) {
+        const title = el.map((el) => {
+          updateQuantity(el, el.stock)
+          return el.title
+        })
+        swal({
+          title: "Te pedimos disculpas",
+          text: `Mientras estabas comprando los siguientes productos quedaron sin stock: \n \n - ${title.join("\n - ")} \n \n Se actualizará la cantidad automáticamente`,
+          icon: "error",
+          button: "Volver",
+        })
+        console.log("no hay stock");
+      } else {
+        addOrdertoFb(order)
+        console.log("hay stock");
+      }
+    })
+  }
+
+  const checkStock = () => {
+    const notInStock = cart.map(async (el) => {
+      if (el.quantity > await checkStockFB(el.id)) {
+        updateStock(el, await checkStockFB(el.id))
+        return { id: el.id, title: el.title, stock: el.stock }
+      }
+    })
+    return Promise.all(notInStock).then(el => el.filter(element => { return element }))
+  }
+
+  const checkStockFB = async (cartId) => {
+    let stock;
+    try {
+      const q = query(collection(db, "items"), where(documentId(), "==", cartId));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        return stock = doc.data()
+      });
+      return stock.stock
+    } catch (error) {
+    }
+  }
+
 
   return (
     <>
@@ -69,7 +117,7 @@ const Cart = () => {
                   return <tr key={product.id} className='tr--bottom'>
                     <td className='td__img px-3 py-3'><img className='img-fluid img' src={product.image} alt={product.title}></img></td>
                     <td className='px-3 text-center'>{product.title}</td>
-                    <td className='px-3 text-center'>Cant: {product.quantity}</td>
+                    <td><ItemCounterCart cant={product.quantity} stock={product.stock} product={product}/></td>
                     <td className='px-3 text-center'>$ {Math.round(itemTotal(product.price, product.quantity) * 100) / 100} </td>
                     <td className='px-3 text-center'> <button className='mx-3 btn btn-info justify-item-center mx-auto' onClick={() => { removeItem(product.id) }}>Quitar Producto</button></td>
                   </tr>

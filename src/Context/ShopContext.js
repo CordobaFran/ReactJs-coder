@@ -8,23 +8,37 @@ const ShopProvider = ({ children }) => {
 
   const addItem = (product, quantity) => {
     const repeatedProduct = isInCart(product)
-    
+
     if (repeatedProduct) {
       repeatedProduct.quantity += quantity
       setCart([...cart])
     } else {
       setCart([...cart, { ...product, quantity }])
     }
+  }
 
+  const updateStock = (product, productFbStock) => {
+    const productStockToUpdate = isInCart(product)
+    if (productStockToUpdate) {
+      productStockToUpdate.stock = productFbStock
+      setCart([...cart])
+    }
+  }
+
+  const updateQuantity = (product, qty) => {
+    const productQtyToUpdate = isInCart(product)
+    if (productQtyToUpdate) {
+      productQtyToUpdate.quantity = qty
+      setCart([...cart])
+    }
   }
 
   const removeItem = (itemId) => {
     const remove = cart.filter(el => el.id !== itemId)
     setCart(remove)
-    
   }
 
-  const removeAll = ()=>{
+  const removeAll = () => {
     setCart([])
   }
 
@@ -32,9 +46,8 @@ const ShopProvider = ({ children }) => {
     return cart.find(el => el.id === product.id)
   }
 
-
   return (
-    <Shop.Provider value={{ addItem, cart, setCart, removeItem, removeAll }}>
+    <Shop.Provider value={{ addItem, cart, setCart, updateStock, updateQuantity, removeItem, removeAll }}>
       {children}
     </Shop.Provider>
   )
