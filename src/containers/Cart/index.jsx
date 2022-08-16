@@ -74,10 +74,8 @@ const Cart = () => {
           icon: "error",
           button: "Volver",
         })
-        console.log("no hay stock");
       } else {
         addOrdertoFb(order)
-        console.log("hay stock");
       }
     })
   }
