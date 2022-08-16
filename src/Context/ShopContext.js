@@ -17,6 +17,20 @@ const ShopProvider = ({ children }) => {
     }
   }
 
+  const checkCart = (product, quantity) => {
+    const repeatedCart = isInCart(product)
+
+    if (repeatedCart) {
+      if ((repeatedCart.quantity + quantity) > product.stock) {
+        return false
+      } else {
+        return true
+      }
+    } else {
+      return true
+    }
+  }
+
   const updateStock = (product, productFbStock) => {
     const productStockToUpdate = isInCart(product)
     if (productStockToUpdate) {
@@ -47,7 +61,7 @@ const ShopProvider = ({ children }) => {
   }
 
   return (
-    <Shop.Provider value={{ addItem, cart, setCart, updateStock, updateQuantity, removeItem, removeAll }}>
+    <Shop.Provider value={{ addItem, cart, setCart, updateStock, updateQuantity, removeItem, removeAll, checkCart }}>
       {children}
     </Shop.Provider>
   )

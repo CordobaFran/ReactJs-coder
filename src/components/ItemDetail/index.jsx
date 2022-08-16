@@ -3,13 +3,14 @@ import { useContext } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Shop } from '../../Context/ShopContext'
+import swal from 'sweetalert';
 import ItemCounter from '../ItemCounter/index'
 import "./style.css"
 
 
 const ItemDetail = ({ product }) => {
 
-  const { addItem } = useContext(Shop);
+  const { addItem, checkCart } = useContext(Shop);
 
   const navigate = useNavigate();
 
@@ -20,16 +21,20 @@ const ItemDetail = ({ product }) => {
   }
 
   const handleFinish = () => {
-    addItem(product, qtyAdded)
-    navigate('/cart')
-  }
-
-  const handleModify = () => {
-    setQtyAdded(0)
+    if (checkCart(product, qtyAdded)) {
+      addItem(product, qtyAdded)
+      navigate('/cart')
+    } else {
+      swal({
+        title: "No se realizó la acción",
+        text: `Ya tienes éste producto en tu carrito, la cantidad que has agregado supera al stock. \nPuedes modificar la cantidad desde el carrito`,
+        icon: "error",
+        button: "Volver",
+      })
+    }
   }
 
   const handleContinue = () => {
-    addItem(product, qtyAdded)
     navigate(-1)
   }
 
@@ -58,15 +63,11 @@ const ItemDetail = ({ product }) => {
                     <button onClick={handleFinish} className="btn btn-danger my-2 w-100">Terminar mi Compra</button>
                   </div>
                   <div className='text-center'>
-                    <button onClick={handleModify} className="btn btn-info my-2 w-100">Modificar Compra</button>
-                  </div>
-                  <div className='text-center'>
                     <button onClick={handleContinue} className="btn btn-success my-2 w-100">Seguir Comprando</button>
                   </div>
                 </div>
               </>
             }
-
           </div>
         </div>
         <div className="row mt-3">

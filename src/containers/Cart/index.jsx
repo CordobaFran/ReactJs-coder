@@ -55,7 +55,7 @@ const Cart = () => {
     // later...
     await addDoc(newOrderRef, order).then(({ id }) => {
       swal("Orden Generada", `Se ha creado la orden:\n\nID: ${id}\n\nHora: ${order.time} `, "success");
-      // setCart([])
+      setCart([])
     });
   }
 
