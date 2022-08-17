@@ -27,7 +27,7 @@ const ItemDetail = ({ product }) => {
     } else {
       swal({
         title: "No se realizó la acción",
-        text: `Ya tienes éste producto en tu carrito, la cantidad que has agregado supera al stock. \nPuedes modificar la cantidad desde el carrito`,
+        text: `Ya tienes éste producto en tu carrito, la cantidad que has agregado supera al stock. \n \n Puedes modificar la cantidad desde el carrito o seguir comprando otros productos`,
         icon: "error",
         button: "Volver",
       })
